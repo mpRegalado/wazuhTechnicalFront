@@ -11,14 +11,14 @@ const useRule = (id) => {
         setLoading(true);
             DataEndpoint.getRule(id)
                 .then(response => {
-                    setRule(response.data);
+                    setRule(response.data.data);
                     setLoading(false);
                 })
                 .catch(error => {
                     setError(error.message)
                     setLoading(false);
                 })
-    }, [offset,limit,id])
+    }, [id])
     return {
         loading,
         error,

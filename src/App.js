@@ -10,6 +10,7 @@ import Header from './components/header/header';
 import Agents from './pages/agents';
 import Alerts from './pages/alerts';
 import Home from './pages/home';
+import Rules from './pages/rules';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Switch>
             <Route path="/alerts" component={Alerts} />
             <Route path="/agents" component={Agents} />
+            <Route path="/rules" component={Rules} />
             <Route path="/" exact component={Home} />
           </Switch>
         </EuiPageBody>
