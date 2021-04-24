@@ -8,7 +8,7 @@ const useRule = (id) => {
     const [rule, setRule] = useState(null);
 
     useEffect(()=>{
-        if(loading) {
+        setLoading(true);
             DataEndpoint.getRule(id)
                 .then(response => {
                     setRule(response.data);
@@ -18,8 +18,7 @@ const useRule = (id) => {
                     setError(error.message)
                     setLoading(false);
                 })
-        }
-    }, [offset,limit,id,loading])
+    }, [offset,limit,id])
     return {
         loading,
         error,

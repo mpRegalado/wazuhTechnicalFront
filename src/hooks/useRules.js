@@ -8,18 +8,17 @@ const useRules = (offset,limit) => {
     const [rules, setRules] = useState(null);
 
     useEffect(()=>{
-        if(loading) {
-            DataEndpoint.getRules(offset,limit)
-                .then(response => {
-                    setRules(response.data);
-                    setLoading(false);
-                })
-                .catch(error => {
-                    setError(error.message)
-                    setLoading(false);
-                })
-        }
-    }, [offset,limit,id,loading])
+        setLoading(true);
+        DataEndpoint.getRules(offset,limit)
+            .then(response => {
+                setRules(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error.message)
+                setLoading(false);
+            })
+    }, [offset,limit,id])
     return {
         loading,
         error,

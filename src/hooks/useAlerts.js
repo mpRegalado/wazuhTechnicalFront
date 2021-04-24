@@ -2,24 +2,23 @@ import { useEffect, useState } from "react"
 import DataEndpoint from "../lib/dataEndpoint";
 
 
-const useAlerts = (offset,limit,id) => {
+const useAlerts = (offset,limit,id = null) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [alerts, setAlerts] = useState(null);
 
     useEffect(()=>{
-        if(loading) {
-            DataEndpoint.getAlerts(offset,limit,id)
-                .then(response => {
-                    setAlerts(response.data);
-                    setLoading(false);
-                })
-                .catch(error => {
-                    setError(error.message)
-                    setLoading(false);
-                })
-        }
-    }, [offset,limit,id,loading])
+        setLoading(true)
+        DataEndpoint.getAlerts(offset,limit,id)
+            .then(response => {
+                setAlerts(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error.message)
+                setLoading(false);
+            })
+    }, [offset,limit,id])
     return {
         loading,
         error,

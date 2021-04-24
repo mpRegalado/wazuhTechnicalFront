@@ -8,18 +8,17 @@ const useAgent = (id) => {
     const [agent, setAgent] = useState(null);
 
     useEffect(()=>{
-        if(loading) {
-            DataEndpoint.getAgent(id)
-                .then(response => {
-                    setAgent(response.data);
-                    setLoading(false);
-                })
-                .catch(error => {
-                    setError(error.message)
-                    setLoading(false);
-                })
-        }
-    }, [offset,limit,id,loading])
+        setLoading(true)
+        DataEndpoint.getAgent(id)
+            .then(response => {
+                setAgent(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error.message)
+                setLoading(false);
+            })
+    }, [offset,limit,id])
     return {
         loading,
         error,

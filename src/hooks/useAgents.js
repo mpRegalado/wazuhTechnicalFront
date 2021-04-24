@@ -8,18 +8,17 @@ const useAgents = (offset,limit) => {
     const [agents, setAgents] = useState(null);
 
     useEffect(()=>{
-        if(loading) {
-            DataEndpoint.getAgents(offset,limit)
-                .then(response => {
-                    setAgents(response.data);
-                    setLoading(false);
-                })
-                .catch(error => {
-                    setError(error.message)
-                    setLoading(false);
-                })
-        }
-    }, [offset,limit,id,loading])
+        setLoading(true)
+        DataEndpoint.getAgents(offset,limit)
+            .then(response => {
+                setAgents(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error.message)
+                setLoading(false);
+            })
+    }, [offset,limit,id])
     return {
         loading,
         error,

@@ -15,9 +15,12 @@ class DataEndpoint {
         }
     }
 
-    static async getAlerts(offset,limit,id){
-        const idString = id.join(',');
-        return this.getWithParams('/alerts',{offset,limit,id:idString});
+    static async getAlerts(offset,limit,id = null){
+        const query = {offset, limit}
+        if (id){
+            query.id = id.join(',');
+        }
+        return this.getWithParams('/alerts',query);
     }
     static async getAgents(offset, limit){
         return this.getWithParams('/agents',{offset,limit});
