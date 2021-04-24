@@ -7,6 +7,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './components/header/header';
+import Alerts from './pages/alerts';
 import Home from './pages/home';
 
 function App() {
@@ -14,9 +15,10 @@ function App() {
     <div className="App" style={{minHeight:"100vh", display:"flex"}}>
       <BrowserRouter>
       <Header />
-      <EuiPage restrictWidth style={{paddingTop:"50px"}}>
+      <EuiPage style={{paddingTop:"50px"}}>
         <EuiPageBody>
           <Switch>
+            <Route path="/alerts" component={Alerts} />
             <Route path="/" exact component={Home} />
           </Switch>
         </EuiPageBody>
