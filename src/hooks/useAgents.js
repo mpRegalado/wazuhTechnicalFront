@@ -18,7 +18,7 @@ const useAgents = (offset,limit) => {
                 setError(error.message)
                 setLoading(false);
             })
-    }, [offset,limit,id])
+    }, [offset,limit])
     return {
         loading,
         error,

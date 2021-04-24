@@ -7,6 +7,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './components/header/header';
+import Agents from './pages/agents';
 import Alerts from './pages/alerts';
 import Home from './pages/home';
 
@@ -19,6 +20,7 @@ function App() {
         <EuiPageBody>
           <Switch>
             <Route path="/alerts" component={Alerts} />
+            <Route path="/agents" component={Agents} />
             <Route path="/" exact component={Home} />
           </Switch>
         </EuiPageBody>

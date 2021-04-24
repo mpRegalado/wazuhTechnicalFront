@@ -61,7 +61,7 @@ const AlertDetails = ({alertData, showAgent = true, showRule = true}) => {
         {showAgent ? 
         <EuiFlexItem>
             <EuiPanel>
-                <EuiTitle size="m" text><h1>Agent</h1></EuiTitle>
+                <EuiTitle size="m"><h1>Agent</h1></EuiTitle>
                 <AgentDetail agentData={alertData.agent} />
             </EuiPanel>
         </EuiFlexItem>

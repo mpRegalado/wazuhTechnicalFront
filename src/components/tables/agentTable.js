@@ -4,15 +4,12 @@ import {
     EuiButtonIcon
 } from '@elastic/eui'
 import {RIGHT_ALIGNMENT} from '@elastic/eui/lib/services'
-import AlertDetails from '../details/alertDetails';
-import { formatDate } from '@elastic/eui/lib/services/format';
+import AgentUsage from '../details/usage/agentUsage';
 
-const AlertTable = ({
-        alerts,
+const AgentTable = ({
+        agents,
         loading,
-        error,
-        idFilter = null,
-        setIdFilter = () => {}
+        error
     }) => {
     
     const [page,setPage] = useState(0);
@@ -27,17 +24,8 @@ const AlertTable = ({
         let items = [];
         let total_items = 0;
         if(!loading){
-            items = alerts.data.map((alert) => {
-                const item = {...alert};
-                item["agentName"] = item.agent.name;
-                item["agentIp"] = item.agent.ip;
-                item["agentId"] = item.agent.id;
-                item["ruleId"] = item.rule.id;
-                item["ruleDescription"] = item.rule.description;
-                item["ruleLevel"] = item.rule.level;
-                return item
-            })
-            total_items=alerts.total_items;
+            items = [...agents.data]
+            total_items=agents.total_items;
         }
         
 
@@ -58,10 +46,10 @@ const AlertTable = ({
         //Expand Config
         const toggleDetails = (item) => {
             const expandedRows = {...itemIdToExpandedRowMap};
-            if (expandedRows[item.uid]){
-                delete expandedRows[item.uid];
+            if (expandedRows[item.id]){
+                delete expandedRows[item.id];
             } else {
-                expandedRows[item.uid] = (<AlertDetails alertData={item} />);
+                expandedRows[item.id] = (<AgentUsage agentID={item.id}/>);
             }
             setItemIdToExppandedRowMap(expandedRows);
         }
@@ -77,27 +65,15 @@ const AlertTable = ({
                 incremental: false,
                 schema: {
                     id: {
-                        type: 'string'
-                    },
-                    timestamp: {
-                        type: 'date'
-                    },
-                    agentName:{
-                        type: 'string'
-                    },
-                    agentIp:{
-                        type: 'string'
-                    },
-                    agentId:{
                         type: 'int'
                     },
-                    ruleId:{
-                        type: 'int'
-                    },
-                    ruleDescription:{
+                    name: {
                         type: 'string'
                     },
-                    ruleLevel:{
+                    ip:{
+                        type: 'string'
+                    },
+                    total_alerts:{
                         type: 'int'
                     },
                 },
@@ -106,56 +82,37 @@ const AlertTable = ({
 
         //Properties
         const getRowProps = (item) => {
-            const { uid } = item;
+            const { id } = item;
             return {
-                'data-test-subj' : `row-${uid}`,
+                'data-test-subj' : `row-${id}`,
                 onClick: () => {}
             };
         };
         const getCellProps = (item, column) => {
-            const {uid} = item;
+            const {id} = item;
             const {field} = column;
             return {
-                'data-test-subj' : `cell-${uid}-${field}`
+                'data-test-subj' : `cell-${id}-${field}`
             };
         };
 
         //Final Column Definition
         const columns = [
             {
-                field: 'uid',
-                name: 'UID'
-            },
-            {
                 field: 'id',
                 name: 'ID'
             },
             {
-                field: 'timestamp',
-                name: 'Date and time',
-                render: (date) => formatDate(date)
+                field: 'name',
+                name: 'Name',
             },
             {
-                field: 'agent',
-                name: 'Agent',
-                render: ({name,ip,id}) => (
-                    <div>
-                        <div>{`ID: ${id}`}</div>
-                        <div>{name}</div>
-                        <div>{ip}</div>
-                    </div>
-                )
+                field: 'ip',
+                name: 'IP',
             },
             {
-                field: 'rule',
-                name: 'Rule',
-                render: ({id,description, level}) => (
-                    <div>
-                        <div>{`ID: ${id}`}</div>
-                        <div>{description}</div>
-                        <div>{`Level: ${level}`}</div>
-                    </div>
-                )
+                field: 'total_alerts',
+                name: 'Total Alerts',
             },
             {
                 align: RIGHT_ALIGNMENT,
@@ -164,8 +121,8 @@ const AlertTable = ({
                 render: (item) => (
                   <EuiButtonIcon
                     onClick={() => toggleDetails(item)}
-                    aria-label={itemIdToExpandedRowMap[item.uid] ? 'Collapse' : 'Expand'}
-                    iconType={itemIdToExpandedRowMap[item.uid] ? 'arrowUp' : 'arrowDown'}
+                    aria-label={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}
+                    iconType={itemIdToExpandedRowMap[item.id] ? 'arrowUp' : 'arrowDown'}
                   />
                 ),
               },
@@ -181,7 +138,7 @@ const AlertTable = ({
             pagination={pagination}
             onChange={onTableChange}
             isExpandable={true}
-            itemId="uid"
+            itemId="id"
             itemIdToExpandedRowMap={itemIdToExpandedRowMap}
             search={search}
             loading={loading}
@@ -191,4 +148,4 @@ const AlertTable = ({
     return render
 }
 
-export default AlertTable
+export default AgentTable
