@@ -1,4 +1,4 @@
-import { EuiPanel, EuiLoadingChart } from '@elastic/eui';
+import { EuiPanel} from '@elastic/eui';
 import React from 'react'
 import IncidenceChart from '../components/charts/incidenceChart';
 import AsyncWrapper from '../components/hoc/asyncWrapper';

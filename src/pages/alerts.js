@@ -1,4 +1,3 @@
-import moment from 'moment-timezone';
 import React, { useState } from 'react'
 import TimeDistribution from '../components/charts/timeDistribution';
 import {EuiPanel} from '@elastic/eui'

@@ -1,5 +1,4 @@
 import { 
-    EuiLoadingChart,
     EuiPanel
 } from '@elastic/eui';
 import React from 'react'
