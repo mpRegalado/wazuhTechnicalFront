@@ -1,16 +1,14 @@
-import { EuiLoadingContent } from "@elastic/eui"
-
+import { EuiLoadingContent, EuiCallOut } from "@elastic/eui"
+ 
 const AsyncWrapper = ({children,loading,error}) => {
-    let render = <p>Nothing Here</p>
+    let render = children;
     if (loading){
         render = <EuiLoadingContent />
     } else if (error) {
-        render = <p>ERROR: {error}</p>
-    } else {
-        render = children
+        render = <EuiCallOut title={error} color="danger" iconType="alert" />
     }
-
+ 
     return render
 }
-
+ 
 export default AsyncWrapper
