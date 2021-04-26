@@ -19,11 +19,11 @@ const RuleDetail = ({ruleData}) => {
         },
         {
             title:"Pci dss",
-            description:JSON.stringify(ruleData.pci_dss),
+            description:ruleData.pci_dss.join(", "),
         },
         {
             title:"Hipaa",
-            description:JSON.stringify(ruleData.hipaa),
+            description:ruleData.hipaa.join(", "),
         },
         {
             title:"Description",
@@ -31,7 +31,7 @@ const RuleDetail = ({ruleData}) => {
         },
         {
             title:"Groups",
-            description:JSON.stringify(ruleData.groups),
+            description:ruleData.groups.join(", "),
         },
         {
             title:"Id",
@@ -39,15 +39,15 @@ const RuleDetail = ({ruleData}) => {
         },
         {
             title:"nist 800 53",
-            description:JSON.stringify(ruleData["nist_800_53"]),
+            description:ruleData["nist_800_53"].join(", "),
         },
         {
             title:"gpg13",
-            description:JSON.stringify(ruleData.gpg13),
+            description:ruleData.gpg13.join(", "),
         },
         {
             title:"gdpr",
-            description:JSON.stringify(ruleData.gdpr),
+            description:ruleData.gdpr.join(", "),
         },
     ]
     return <EuiDescriptionList 
