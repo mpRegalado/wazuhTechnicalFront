@@ -88,7 +88,7 @@ const RuleTable = ({
             const { id } = item;
             return {
                 'data-test-subj' : `row-${id}`,
-                onClick: () => {}
+                onClick: () => {toggleDetails(item);}
             };
         };
         const getCellProps = (item, column) => {
