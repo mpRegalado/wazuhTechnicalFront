@@ -10,7 +10,6 @@ import {
 import { euiPaletteColorBlind } from '@elastic/eui/lib/services/color'
 
 const IncidenceChart = ({data,title="Sample Title", height=400}) => {
-  console.log(euiPaletteColorBlind());
   return (
     <>
       <EuiTitle size="xxs">
