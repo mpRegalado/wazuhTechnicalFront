@@ -102,7 +102,9 @@ const AlertTable = ({
         const { uid } = item;
         return {
             'data-test-subj' : `row-${uid}`,
-            onClick: () => {}
+            onClick: (e) => {
+                toggleDetails(item);
+            }
         };
     };
     const getCellProps = (item, column) => {
