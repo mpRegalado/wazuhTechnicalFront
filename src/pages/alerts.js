@@ -13,22 +13,18 @@ const Alerts = props => {
 
     const histogramData = MapTimestampsToArray(alerts);
     return (
-        <>
+        <AsyncWrapper loading={loading} error={error}>
             <EuiPanel>
-                <AsyncWrapper loading={loading} error={error}>
-                    <TimeDistribution data={histogramData}/>
-                </AsyncWrapper>
+                <TimeDistribution data={histogramData}/>
             </EuiPanel>
             <EuiPanel>
                 <AlertTable 
                     alerts={alerts}
-                    error={error}
-                    loading={loading}
                     idFilter={idFilter}
                     setIdFilter={setIdFilter}
                 />
             </EuiPanel>
-        </>
+        </AsyncWrapper>
     )
 }
 
