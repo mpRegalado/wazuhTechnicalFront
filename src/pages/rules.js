@@ -12,14 +12,12 @@ const Rules = props => {
     const {rules, error, loading} = useRules();
     const data = MapLabelToAlerts(rules,"description");
     return (
-        <>
-            <EuiPanel>
-                <AsyncWrapper loading={loading} error={error}>
-                    <IncidenceChart 
-                        title="Alerts per rule"
-                        data={data}
-                    />
-                </AsyncWrapper>
+        <AsyncWrapper loading={loading} error={error}>
+            <EuiPanel>            
+                <IncidenceChart 
+                    title="Alerts per rule"
+                    data={data}
+                />            
             </EuiPanel>
             <EuiPanel>
                 <RuleTable
@@ -28,7 +26,7 @@ const Rules = props => {
                     error={error}
                 />
             </EuiPanel>
-        </>
+        </AsyncWrapper>
     )
 }
 

@@ -11,14 +11,12 @@ const Agents = props => {
     const {agents, error, loading} = useAgents();
     const data = MapLabelToAlerts(agents,"name");
     return (
-        <>
-            <EuiPanel>
-                <AsyncWrapper loading={loading} error={error}>
-                    <IncidenceChart 
-                        title="Alerts per agent"
-                        data={data}
-                    />
-                </AsyncWrapper>
+        <AsyncWrapper loading={loading} error={error}>
+            <EuiPanel>                
+                <IncidenceChart 
+                    title="Alerts per agent"
+                    data={data}
+                />
             </EuiPanel>
             <EuiPanel>
                 <AgentTable
@@ -27,7 +25,7 @@ const Agents = props => {
                     error={error}
                 />
             </EuiPanel>
-        </>
+        </AsyncWrapper>
     )
 }
 
