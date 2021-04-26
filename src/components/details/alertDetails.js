@@ -4,7 +4,8 @@ import {
     EuiFlexItem,
     EuiPanel,
     EuiDescriptionList,
-    EuiTitle
+    EuiTitle,
+    EuiCodeBlock
 } from '@elastic/eui'
 import { formatDate } from '@elastic/eui/lib/services/format'
 import AgentDetail from './agentDetails'
@@ -34,11 +35,11 @@ const AlertDetails = ({alertData, showAgent = true, showRule = true}) => {
         },
         {
             title: "Predecoder",
-            description: JSON.stringify(alertData.predecoder)
+            description: <EuiCodeBlock>{JSON.stringify(alertData.predecoder)}</EuiCodeBlock>
         },
         {
             title: "Decoder",
-            description: JSON.stringify(alertData.decoder)
+            description: <EuiCodeBlock>{JSON.stringify(alertData.decoder)}</EuiCodeBlock>
         },
         {
             title: "Location",
@@ -46,7 +47,7 @@ const AlertDetails = ({alertData, showAgent = true, showRule = true}) => {
         },
         {
             title: "Syscheck",
-            description: JSON.stringify(alertData.syscheck)
+            description: <EuiCodeBlock>{JSON.stringify(alertData.syscheck)}</EuiCodeBlock>
         },
 
     ]
