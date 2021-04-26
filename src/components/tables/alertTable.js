@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import {
     EuiInMemoryTable,
-    EuiButtonIcon
+    EuiButtonIcon,
+    EuiFlexGroup,
+    EuiButton,
+    Query,
+    EuiFlexItem
 } from '@elastic/eui'
 import {RIGHT_ALIGNMENT} from '@elastic/eui/lib/services'
 import AlertDetails from '../details/alertDetails';
@@ -20,7 +24,6 @@ const AlertTable = ({
 
     let items = [];
     let total_items = 0;
-
     items = alerts.data.map((alert) => {
         const item = {...alert};
         item["agentName"] = item.agent.name;
@@ -67,7 +70,7 @@ const AlertTable = ({
         },
         query:query,
         box: {
-            incremental: false,
+            incremental: true,
             schema: {
                 id: {
                     type: 'string'
@@ -166,19 +169,39 @@ const AlertTable = ({
             },
     ]
 
-    return <EuiInMemoryTable
-        items={items}
-        rowHeader="id"
-        columns={columns}
-        rowProps={getRowProps}
-        cellProps={getCellProps}
-        pagination={pagination}
-        onChange={onTableChange}
-        isExpandable={true}
-        itemId="uid"
-        itemIdToExpandedRowMap={itemIdToExpandedRowMap}
-        search={search}
-    />
+    return (
+        <EuiFlexGroup direction="column">
+            <EuiFlexItem>
+                <EuiFlexGroup>
+                    <EuiFlexItem>
+                        <EuiButton onClick={() => {setQuery(Query.parse("ruleLevel>5"))}}>
+                            Find biggest alerts
+                        </EuiButton>
+                    </EuiFlexItem>
+                    <EuiFlexItem>
+                        <EuiButton onClick={()=>{setQuery(Query.parse("agentName:Debian"))}}>
+                            Alerts on Debian system
+                        </EuiButton>
+                    </EuiFlexItem>
+                </EuiFlexGroup>
+            </EuiFlexItem>
+            <EuiFlexItem>
+                <EuiInMemoryTable
+                    items={items}
+                    rowHeader="id"
+                    columns={columns}
+                    rowProps={getRowProps}
+                    cellProps={getCellProps}
+                    pagination={pagination}
+                    onChange={onTableChange}
+                    isExpandable={true}
+                    itemId="uid"
+                    itemIdToExpandedRowMap={itemIdToExpandedRowMap}
+                    search={search}
+                />
+            </EuiFlexItem>
+        </EuiFlexGroup>
+    )
 }
 
 export default AlertTable
