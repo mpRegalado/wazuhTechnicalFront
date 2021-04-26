@@ -17,9 +17,9 @@ import useRules from '../hooks/useRules';
 import { MapLabelToAlerts, MapTimestampsToArray } from '../lib/dataMapper';
 
 const Home = props => {
-    const {alerts, loading: alertsLoading, error: alertsError} = useAlerts(0,0);
-    const {agents, loading: agentsLoading, error: agentsError} = useAgents(0,0);
-    const {rules, loading: rulesLoading, error: rulesError} = useRules(0,0);
+    const {alerts, loading: alertsLoading, error: alertsError} = useAlerts();
+    const {agents, loading: agentsLoading, error: agentsError} = useAgents();
+    const {rules, loading: rulesLoading, error: rulesError} = useRules();
     const { linkTo } = useLink();
     return (
         <>

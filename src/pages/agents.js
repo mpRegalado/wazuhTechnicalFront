@@ -8,7 +8,7 @@ import useAgents from '../hooks/useAgents';
 import { MapLabelToAlerts } from '../lib/dataMapper';
 
 const Agents = props => {
-    const {agents, error, loading} = useAgents(0,0);
+    const {agents, error, loading} = useAgents();
     const data = MapLabelToAlerts(agents,"name");
     return (
         <>

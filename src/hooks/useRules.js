@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import DataEndpoint from "../lib/dataEndpoint";
 
 
-const useRules = (offset,limit) => {
+const useRules = (offset=0,limit=0) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [rules, setRules] = useState(null);

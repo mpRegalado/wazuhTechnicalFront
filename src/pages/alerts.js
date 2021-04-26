@@ -9,7 +9,7 @@ import AsyncWrapper from '../components/hoc/asyncWrapper';
 
 const Alerts = props => {
     const [idFilter,setIdFilter] = useState(null);
-    const {alerts, error, loading} = useAlerts(0,0,idFilter);
+    const {alerts, error, loading} = useAlerts();
 
     const histogramData = MapTimestampsToArray(alerts);
     return (

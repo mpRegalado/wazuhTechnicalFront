@@ -9,7 +9,7 @@ import useRules from '../hooks/useRules'
 import { MapLabelToAlerts } from '../lib/dataMapper';
 
 const Rules = props => {
-    const {rules, error, loading} = useRules(0,0);
+    const {rules, error, loading} = useRules();
     const data = MapLabelToAlerts(rules,"description");
     return (
         <>
