@@ -1,4 +1,6 @@
 # Front for the Wazuh Technical Test
+## [Live version here](https://wazuh-technical-front.web.app/)
+
 In this project, I have built a web application that displays the data provided from the [wazuhTechnicalAPI](https://github.com/mpRegalado/wazuhTechnicalAPI)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
