@@ -25,11 +25,11 @@ In another terminal window, run the instructions described here
 [https://github.com/mpRegalado/wazuhTechnicalAPI](https://github.com/mpRegalado/wazuhTechnicalAPI)
 
 ### Make sure the api URL is correct
-By default, the app will try to connect to an API at
+By default, the API launches at localhost:5000, so run the following command
 ```
-http://127.0.0.1:5000
+echo "REACT_APP_ENDPOINT_URL=http://127.0.0.1:5000" > .env.local
 ```
-If you wish to change this, modify the contents of the `.env` file.
+Change that IP to the one your API instance is listening to for the development mode version, or write to `.env` if you want to change the production API endpoint
 ### Run the app
 ```
 yarn start
