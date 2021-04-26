@@ -25,7 +25,7 @@ In another terminal window, run the instructions described here
 ### Make sure the api URL is correct
 By default, the app will try to connect to an API at
 ```
-https://127.0.0.1:5000
+http://127.0.0.1:5000
 ```
 If you wish to change this, modify the contents of the `.env` file.
 ### Run the app
